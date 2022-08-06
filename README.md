@@ -28,3 +28,10 @@ fetch('https://codetogo.io/api/users.xml')
 
 const resultOk = await request("/robots.txt");
 const resultError = await request("/nonExistentFile.txt");
+
+
+let str = "42";
+Number.parseInt(str, 10); 
+
+let number = 42
+number.toString()
