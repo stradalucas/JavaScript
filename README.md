@@ -38,3 +38,8 @@ number.toString()
 
 Una nota importante sobre const es que no crea una constante o un valor inmutable. Esto se explicará a fondo una vez que aprendamos sobre matrices y objetos. Lo que necesita saber, por ahora, es que solo puede usar el signo igual una vez, pero aún puede cambiar elementos dentro de una matriz u objeto.
 
+
+
+input.addEventListener("input", (event) => {
+    output.textContent = getDescription(event.currentTarget.value);
+});
