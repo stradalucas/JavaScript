@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <p>Contador</p>
+    <p id="counter">1</p>
+    <button id="incremetar">Incrementar</button>
+    
+
+    <script>
+        let counter = 1;
+        let $counter = document.getElementById('counter');
+
+        window.addEventListener('storage', event => {
+            console.log(event.key)
+            if(event.key === 'counterStorage'){
+                const newCounterValue = +event.newValue;
+                $counter.textContent = newCounterValue;
+                counter = newCounterValue;
+            }
+        } )
+
+        incremetar.addEventListener('click', () => {
+            counter++;
+            $counter.textContent = counter;
+            localStorage.setItem('counterStorage', counter)
+        })
+
+    </script>
+</body>
+</html>
