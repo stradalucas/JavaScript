@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+
+<body>
+
+    <p>Contador</p>
+    <p id="display">1</p>
+    <button id="increment">Increment</button>
+    <button id="decrement">Decrease</button>
+    <button id="reset">Reset</button>
+    <button id="newTab">New Tab</button>
+
+    <script>
+"use strict";
+
+class Counter {
+
+  constructor() {
+    this.counter = 1;
+    this.displayElement = document.getElementById('display');
+    this.loadCounter();
+    this.attachEvents();
+    this.onStorageChange();
+  }
+
+  loadCounter() {
+    const counterValue = localStorage.getItem('counterStorage');
+    if (Number.isFinite(+counterValue)) {
+      this.counter = counterValue;
+    }
+    this.#updateDisplay();
+  }
+
+  #updateDisplay() {
+    this.displayElement.innerText = this.counter;
+    this.#saveCounter();
+  }
+
+  #saveCounter() {
+    localStorage.setItem('counterStorage', this.counter);
+  }
+
+  onStorageChange() {
+  window.addEventListener('storage', event => {
+            if (event.key === 'counterStorage') {
+                this.counter = +event.newValue;
+                this.#updateDisplay();
+            }
+        })
+  }
+
+  increment() {
+    this.counter++;
+    this.#updateDisplay();
+  }
+
+  decrement() {
+    this.counter--;
+    this.#updateDisplay();
+  }
+
+  reset() {
+    this.counter = 0;
+    this.#updateDisplay();
+  }
+
+  newTab() {
+      window.open("/", "_blank");
+  }
+
+  attachEvents() {
+    increment.addEventListener('click', () => this.increment());
+    decrement.addEventListener('click', () => this.decrement());
+    reset.addEventListener('click', () => this.reset());
+    newTab.addEventListener('click', () => this.newTab());
+  }
+}
+
+const counter = new Counter();
+
+</script>
+</body>
+
+</html>
